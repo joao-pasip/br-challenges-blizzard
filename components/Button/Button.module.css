@@ -1,0 +1,14 @@
+.buttonWithFill {
+  border: 1px solid #00aeff;
+  background-color: #00aeff;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-left: 2.6rem;
+  padding-right: 2.6rem;
+}
+
+.buttonWithoutFill {
+  background: transparent;
+  border: 1px solid white;
+}

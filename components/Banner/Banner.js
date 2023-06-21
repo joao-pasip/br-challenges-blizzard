@@ -34,7 +34,8 @@ export default function Banner() {
           {
             background: `url(${banner.img.src}) no-repeat center center`,
             backgroundSize: 'cover',
-            width: '100vw',
+            width: 'calc(100vw - 17px)',
+            // width: '100vw',
             height: '100vh'
           }}
           key={banner.id}
