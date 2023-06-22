@@ -21,14 +21,11 @@ export default function App({ Component, pageProps }) {
           font-family: ${poppins.style.fontFamily};
         }
 
-        body {
-          background: #000;
-        }
-
         .container {
           width: 100%;
-          max-width: 1313px;
+          max-width: 1403px;
           margin: 0 auto;
+          padding: 0 45px;
         }
 
         button {
@@ -39,6 +36,12 @@ export default function App({ Component, pageProps }) {
           border: none;
           cursor: pointer;
           color: white;
+        }
+
+        @media (max-width: 800px) { 
+          .container {
+            padding: 0 20px;
+          }
         }
       `}</style>
       <Component {...pageProps}/>
