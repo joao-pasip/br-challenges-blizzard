@@ -2,8 +2,11 @@ import styles from './Banner.module.css';
 import banner1 from '../../assets/images/bg-banner1.jpg';
 import banner2 from '../../assets/images/bg-banner2.jpg';
 import banner3 from '../../assets/images/bg-banner3.jpg';
+import React from 'react';
 
 export default function Banner() {
+
+  const [indexBanner, setIndexBanner] = React.useState(0);
 
   const banners = [
     {
@@ -20,22 +23,16 @@ export default function Banner() {
     }
   ];
 
-  // const styleBanner = {
-  //   background: `url(${banners[0].src}) no-repeat center center`,
-  //   backgroundSize: 'cover',
-  //   width: '100vw',
-  //   height: '100vh'
-  // }
 
   return (
     <>
-      {banners.map((banner) => {
+      {banners.map((banner, index) => {
+        if(index !== indexBanner) return null;
         return (<section style= {
           {
             background: `url(${banner.img.src}) no-repeat center center`,
             backgroundSize: 'cover',
             width: '100%',
-            // width: '100vw',
             height: '100vh'
           }}
           key={banner.id}

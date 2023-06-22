@@ -5,6 +5,7 @@
   top: 0px;
   left: 0px;
   right: 0px;
+  z-index: 1000;
 }
 
 .header {
@@ -29,6 +30,7 @@
 
 .navMenu li {
   position: relative;
+  user-select: none;
 }
 
 .navMenu li:nth-child(1)>img,
@@ -74,6 +76,18 @@
 .hamburguerBtn {
   display: none;
 }
+
+.navMenu li img {
+  transition: 0.3s;
+}
+
+.navMenu li.arrowActive img {
+  transform: rotate(180deg);
+}
+
+/* .navMenu li.arrowActive svg path {
+  stroke: var(--blue);
+} */
 
 @media (max-width: 1130px) {
   .leftHeader nav {
