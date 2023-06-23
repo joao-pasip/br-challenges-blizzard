@@ -9,8 +9,15 @@ import Menu from '../Modal/MenuModal/Menu';
 import React from 'react';
 
 export default function Header() {
-  const [active, setActive] = React.useState(false);
+  const [activeModal, setActiveModal] = React.useState(false);
   const [nameModal, setNameModal] = React.useState('');
+  const [textClassName, setTextClassName] = React.useState('');
+  const [aux, setAux] = React.useState(
+    {
+      jogos: 0,
+      esportes: 0
+    }
+  );
 
   const modal = {
     jogos: [
@@ -31,11 +38,65 @@ export default function Header() {
     ],
   };
 
-  const handleClick = ({target}) => {
-    const textEvent = target.innerText.toLowerCase();
-    setNameModal(textEvent)
-    console.log(nameModal);
-    setActive(!active);
+  // console.log(aux);
+  // console.log(activeModal);
+  const handleClick = (e) => {
+    // console.log(e.target);
+    let liClassName = e.currentTarget.className.trim();
+    let arrayClassName = liClassName.split(" ");
+    let onlyFirstLiClassName = arrayClassName[0];
+
+    if(activeModal) {
+      console.log(onlyFirstLiClassName, activeModal);
+      // console.log(aux);
+      switch (onlyFirstLiClassName) {
+        case 'jogos':
+          aux.jogos++;
+          if (aux.esportes > 0) {
+            aux.esportes--;
+          }
+          setNameModal(liClassName);
+          if(aux.jogos > 1) {
+            setActiveModal(!activeModal);
+            aux.jogos = 0;
+            // console.log(aux);
+          }
+          break;
+
+        case 'esportes':
+          aux.esportes++;
+          if (aux.jogos > 0) {
+            aux.jogos--;
+          }
+          setNameModal(liClassName);
+          if (aux.esportes > 1) {
+            setActiveModal(!activeModal);
+            aux.esportes = 0;
+            // console.log(aux);
+          }
+          break;
+      
+        default:
+          break;
+      }
+    } else {
+      switch (onlyFirstLiClassName) {
+        case 'jogos':
+          aux.jogos++;
+          setActiveModal(!activeModal);
+          setNameModal(liClassName)
+          break;
+
+        case 'esportes':
+          aux.esportes++;
+          setActiveModal(!activeModal);
+          setNameModal(liClassName)
+          break;
+
+        default:
+          break;
+      }
+    }
   }
 
   return (
@@ -59,7 +120,7 @@ export default function Header() {
             <ul className={styles.navMenu}>
               <li
                 onClick={handleClick}
-                className={nameModal === 'jogos' ? styles.arrowActive : ''}
+                className={`jogos ${nameModal === 'jogos' ? styles.arrowActive : ''}`}
               >Jogos<Image 
                 priority
                 height='auto'
@@ -69,7 +130,7 @@ export default function Header() {
               /></li>
               <li
                 onClick={handleClick}
-                className={nameModal === 'esportes' ? styles.arrowActive : ''}
+                className={`esportes ${nameModal === 'esportes' ? styles.arrowActive : ''}`}
               >Esportes<Image
                 priority
                 height='auto'
@@ -99,7 +160,7 @@ export default function Header() {
 
       </div>
 
-      <Menu active={active}/>
+      <Menu activeModal={activeModal}/>
     </header>
   )
 }
