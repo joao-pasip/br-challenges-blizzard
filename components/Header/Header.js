@@ -11,6 +11,7 @@ import React from 'react';
 export default function Header() {
   const [activeModal, setActiveModal] = React.useState(false);
   const [nameModal, setNameModal] = React.useState('');
+  const [nameContentModal, setNameContentModal] = React.useState('');
   const [textClassName, setTextClassName] = React.useState('');
   const [aux, setAux] = React.useState(
     {
@@ -19,25 +20,6 @@ export default function Header() {
     }
   );
 
-  const modal = {
-    jogos: [
-      {
-        id: 1,
-        name: "Diablo",
-      },
-      {
-        id: 2,
-        name: "CSGO",
-      },
-    ],
-    esportes: [
-      {
-        id: 1,
-        name: "Futebol",
-      },
-    ],
-  };
-
   // console.log(aux);
   // console.log(activeModal);
   const handleClick = (e) => {
@@ -45,9 +27,10 @@ export default function Header() {
     let liClassName = e.currentTarget.className.trim();
     let arrayClassName = liClassName.split(" ");
     let onlyFirstLiClassName = arrayClassName[0];
+    setNameContentModal(onlyFirstLiClassName);
 
     if(activeModal) {
-      console.log(onlyFirstLiClassName, activeModal);
+      // console.log(onlyFirstLiClassName, activeModal);
       // console.log(aux);
       switch (onlyFirstLiClassName) {
         case 'jogos':
@@ -160,7 +143,7 @@ export default function Header() {
 
       </div>
 
-      <Menu activeModal={activeModal}/>
+      <Menu activeModal={activeModal} nameContentModal={nameContentModal}/>
     </header>
   )
 }
