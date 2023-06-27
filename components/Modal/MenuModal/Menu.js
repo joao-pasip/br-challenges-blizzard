@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Menu.module.css';
+import Image from 'next/image';
 import DiabloII from '../../../assets/images/logosModalMenu/DiabloLogoII.png';
 import OverwatchLogo2 from '../../../assets/images/logosModalMenu/OverwatchLogo2.png';
 import WorldOfWarcraft from '../../../assets/images/logosModalMenu/WorldOfWarcraft.png';
@@ -17,6 +18,12 @@ import CampeonatoMundialDeArenaWoW from '../../../assets/images/logosModalMenu/C
 import StarCraftIIWCS from '../../../assets/images/logosModalMenu/StarCraftIIWCS.png';
 import CopaMundialDeOverwatch from '../../../assets/images/logosModalMenu/CopaMundialDeOverwatch.png';
 import LigaDeOverwatch from '../../../assets/images/logosModalMenu/LigaDeOverwatch.png';
+import iconVerTodosOsJogos from '../../../assets/images/logosModalMenu/iconsModalMenu/iconVerTodosOsJogos.svg';
+import iconAplicativoBattle from '../../../assets/images/logosModalMenu/iconsModalMenu/iconAplicativoBattle.net.svg';
+import iconDownload from '../../../assets/images/logosModalMenu/iconsModalMenu/iconDownload.svg';
+import iconForunsDosJogos from '../../../assets/images/logosModalMenu/iconsModalMenu/iconForunsDosJogos.svg';
+import torneiosDaComunidade from '../../../assets/images/logosModalMenu/iconsModalMenu/torneiosDaComunidade.svg';
+
 
 
 const modal = {
@@ -113,23 +120,27 @@ const modal = {
 
 export default function Menu({ activeModal, nameContentModal }) {
 
-  React.useEffect(() => { 
+  React.useEffect(() => {
     // console.log(modal[nameContentModal][0]?.img.src);
   }, [nameContentModal])
 
 
 
   return (
-    <section className={`${styles.menuModalContainer} ${activeModal ? styles.menuModalContainerActive : ''}`}>
+    <section className={
+      `${styles.menuModalContainer} 
+      ${activeModal ? styles.menuModalContainerActive : ''} 
+      ${nameContentModal === 'jogos' ? styles.menuModalJogos : styles.menuModalEsportes}`
+    }>
       <div>
-        <div className={styles.menuModal}>
+        <div className={`${styles.menuModal} container`}>
           {nameContentModal && activeModal ? (
             <ul>
               {modal[nameContentModal].map((contentModal) => {
                 return (
                   <li key={contentModal.id}>
-                    <img src={contentModal.img.src} alt={`Logo ${contentModal.name}`}/>
-                    <p>{contentModal.name}</p>
+                    <img src={contentModal.img.src} alt={`Logo ${contentModal.name}`} />
+                    <p className='menuModalText'>{contentModal.name}</p>
                   </li>
                 )
               })}
@@ -138,7 +149,67 @@ export default function Menu({ activeModal, nameContentModal }) {
         </div>
       </div>
       <div className={styles.menuModalFooter}>
-
+        {
+          nameContentModal === 'jogos' ?
+            (
+              <ul>
+                <li>
+                  <Image
+                    priority
+                    height='auto'
+                    width='auto'
+                    src={iconVerTodosOsJogos}
+                    alt="icon Ver Todos os Jogos"
+                  />
+                  <p className='menuModalTextFooter'>Ver todos jogos</p>
+                </li>
+                <li>
+                  <Image
+                    priority
+                    height='auto'
+                    width='auto'
+                    src={iconAplicativoBattle}
+                    alt="icon Aplicativo Battle.net"
+                  />
+                  <p className='menuModalTextFooter'>Aplicativo Battle.net</p>
+                </li>
+                <li>
+                  <Image
+                    priority
+                    height='auto'
+                    width='auto'
+                    src={iconDownload}
+                    alt="icon Download"
+                  />
+                  <p className='menuModalTextFooter'>Downloads</p>
+                </li>
+                <li>
+                  <Image
+                    priority
+                    height='auto'
+                    width='auto'
+                    src={iconForunsDosJogos}
+                    alt="icon Foruns dos Jogos"
+                  />
+                  <p className='menuModalTextFooter'>Foruns dos Jogos</p>
+                </li>
+              </ul>
+            ) :
+            (
+              <ul>
+                <li>
+                  <Image
+                    priority
+                    height='auto'
+                    width='auto'
+                    src={torneiosDaComunidade}
+                    alt="icon Torneios da comunidade"
+                  />
+                  <p className='menuModalTextFooter'>Torneios da comunidade</p>
+                </li>
+              </ul>
+            )
+        }
       </div>
     </section>
   );

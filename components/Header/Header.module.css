@@ -31,6 +31,7 @@
 .navMenu li {
   position: relative;
   user-select: none;
+  cursor: pointer;
 }
 
 .navMenu li:nth-child(1)>img,
