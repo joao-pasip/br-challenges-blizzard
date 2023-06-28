@@ -4,3 +4,23 @@
   width: 100%;
   height: 100vh;
 }
+
+.buttonIcon {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.buttonIcon img {
+  filter: grayscale(1);
+}
+
+.buttonIconActive img {
+  filter: grayscale(0);
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
