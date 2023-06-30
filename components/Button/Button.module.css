@@ -12,3 +12,12 @@
   background: transparent;
   border: 1px solid white;
 }
+
+.buttonBanner {
+  font-weight: 600;
+  line-height: normal;
+  font-style: normal;
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 1.4rem 3.2rem;
+}
